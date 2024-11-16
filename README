@@ -1,0 +1,9 @@
+# basic command for build image and create container
+
+docker build -t feedback-node:volumes .
+
+docker run -d -p --rm 3000:80 --name feedback-app -v feedback:/app/feedback -v ${pwd}:/app -v /app/node_modules feedback-node:volumes
+
+# or
+
+docker run -d -p --rm 3000:80 --env-file ./.env --name feedback-app -v feedback:/app/feedback -v ${pwd}:/app -v /app/node_modules feedback-node:volumes
